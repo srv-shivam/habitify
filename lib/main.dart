@@ -181,13 +181,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: null,
         child: const Icon(
           Icons.add,
           size: 40,
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 10,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 0,
+        // onTap: _updateIndex,
+        selectedItemColor: Colors.blue[700],
+        selectedFontSize: 13,
+        unselectedFontSize: 13,
+        iconSize: 30,
+        items: const [
+          BottomNavigationBarItem(
+            label: "Journal",
+            icon: Icon(Icons.view_stream),
+          ),
+          BottomNavigationBarItem(
+            label: "Progress",
+            icon: Icon(Icons.pie_chart_outline_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Categories",
+            icon: Icon(Icons.grid_view),
+          ),
+          BottomNavigationBarItem(
+            label: "Settings",
+            icon: Icon(Icons.settings),
+          ),
+        ],
+      ),
     );
   }
 }
