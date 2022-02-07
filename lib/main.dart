@@ -31,10 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             elevation: 1,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              padding: const EdgeInsets.fromLTRB(10, 26, 10, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text(
                                 "My Journal",
                                 style: TextStyle(
-                                  fontSize: 24,
+                                  fontSize: 28,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FontStyle.normal,
                                   color: Colors.indigo,
@@ -99,16 +95,38 @@ class _MyHomePageState extends State<MyHomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.school_rounded,
-                            size: 26,
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(90),
+                            ),
+                            elevation: 0,
+                            color: const Color.fromRGBO(208, 225, 250, 0.6),
+                            child: Container(
+                              padding: const EdgeInsets.all(7),
+                              child: const Icon(
+                                Icons.school_rounded,
+                                size: 24,
+                                color: Colors.indigoAccent,
+                              ),
+                            ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 14,
                           ),
-                          Icon(
-                            Icons.add_chart,
-                            size: 26,
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(90),
+                            ),
+                            elevation: 0,
+                            color: const Color.fromRGBO(208, 225, 250, 0.6),
+                            child: Container(
+                              padding: const EdgeInsets.all(7),
+                              child: const Icon(
+                                Icons.addchart_rounded,
+                                size: 24,
+                                color: Colors.indigoAccent,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -119,32 +137,42 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
                   ///TODO::Edit here for listview
-                  Wrap(
-                    children: [
-                      Container(
-                        color: Colors.indigoAccent,
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.library_books_outlined,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              child: Text(
-                                "All Habits",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: const [
+                        CategoryCardWidget(
+                          flag: true,
+                          title: "All Habit",
+                          icon: Icon(
+                            Icons.library_books_outlined,
+                            color: Colors.white,
+                          ),
+                          color: Colors.indigo,
+                          textColor: Colors.grey,
                         ),
-                      ),
-                    ],
+                        CategoryCardWidget(
+                          flag: false,
+                          title: "Evening",
+                          icon: Icon(
+                            Icons.nightlight_round,
+                            color: Colors.grey,
+                          ),
+                          color: Colors.white,
+                          textColor: Colors.grey,
+                        ),
+                        CategoryCardWidget(
+                          flag: false,
+                          title: "New Area",
+                          icon: Icon(
+                            Icons.add,
+                            color: Colors.grey,
+                          ),
+                          color: Colors.white,
+                          textColor: Colors.grey,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -160,6 +188,51 @@ class _MyHomePageState extends State<MyHomePage> {
           size: 40,
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class CategoryCardWidget extends StatelessWidget {
+  const CategoryCardWidget({
+    Key? key,
+    required this.flag,
+    required this.title,
+    required this.icon,
+    required this.color,
+    required this.textColor,
+  }) : super(key: key);
+
+  final bool flag;
+  final String title;
+  final Icon icon;
+  final Color color;
+  final Color textColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      elevation: 0,
+      color: color,
+      child: Row(
+        children: [
+          const SizedBox(
+            width: 10,
+          ),
+          icon,
+          Container(
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: flag ? Colors.white : textColor,
+              ),
+            ),
+            padding: const EdgeInsets.all(10),
+          ),
+        ],
+      ),
     );
   }
 }
