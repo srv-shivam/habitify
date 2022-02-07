@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,55 +40,110 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           const SizedBox(
-            height: 40,
+            height: 24,
           ),
           Container(
             height: 140,
             width: MediaQuery.of(context).size.width,
-            color: Colors.red,
             padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
-            child: Row(
-              // This row is for arrangement of My Journal and right side 2 icons in row
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  //This column is for arrangement of Today & My Journal text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  // This row is for arrangement of My Journal and right side 2 icons in row
                   children: [
-                    const Text(
-                      "Today",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    // TODO::Change it to TextField
-                    Row(
-                      children: const [
-                        Text(
-                          "My Journal",
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      //This column is for arrangement of Today & My Journal text
+                      children: [
+                        const Text(
+                          "Today",
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                             fontStyle: FontStyle.normal,
-                            color: Colors.indigo,
+                            color: Colors.grey,
                           ),
                         ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                          children: const [
+                            // TODO::Change it to TextField
+                            Text(
+                              "My Journal",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.indigo,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              Icons.edit_outlined,
+                              size: 21,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.school_rounded,
+                          size: 26,
+                        ),
                         SizedBox(
-                          width: 5,
+                          width: 14,
                         ),
                         Icon(
-                          Icons.edit_outlined,
-                          size: 25,
+                          Icons.add_chart,
+                          size: 26,
                         ),
                       ],
                     ),
                   ],
-                ), // My Journal
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+
+                ///TODO::Edit here for listview
+                Wrap(
+                  children: [
+                    Container(
+                      color: Colors.indigoAccent,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.library_books_outlined,
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            child: Text(
+                              "All Habits",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
